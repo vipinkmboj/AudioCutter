@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const audioFileSchema = mongoose.Schema({
         email: {
             type: String,
-            required: true
+            //required: true
         },        
         audioFileName: {
             type: String,
