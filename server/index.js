@@ -11,6 +11,8 @@ import { fileURLToPath } from "url";
 import filesRoutes from './routes/files.js'
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //.ENV
 env.config();
@@ -21,18 +23,17 @@ app.use(cors())
 app.use('/files', filesRoutes)
 
 //SERVE STATIC IF IN PRODUCTION
-const __filename = fileURLToPath(import.meta.url);
+app.use(express.static(path.join(__dirname, "client/build")))
 
-const __dirname = path.dirname(__filename);
 
-if(process.env.NODE_ENV === 'production') {
+/* if(process.env.NODE_ENV === 'production') {
     //Set Static folder
     app.use(express.static('client/build'));
 
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
-}
+} */
 
 
 
