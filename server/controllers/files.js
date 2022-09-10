@@ -33,6 +33,19 @@ export const uploadAudioFile = async (req, res, next) => {
 }
 
 
+export const getAudioFiles = async (req, res, next) => {
+
+    //upload audio file
+    try {
+        const audioFiles = await audioFileModel.find();       
+        
+        res.status(201).json(audioFiles)
+    } catch (error) {
+        res.status(400).json(error.message)
+    }
+       
+}
+
 //file size formatter...
 export const fileSizeFormatter = (bytes, decimal) => {
     if(bytes === 0) {

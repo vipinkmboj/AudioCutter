@@ -9,7 +9,8 @@ const Footer = () => {
   return (
     <>
       <hr/>
-      <Container className='dark'>
+      <h2>Footer</h2>
+      {/* <Container className='dark'>
       <Row >
         <Col>
         <ListGroup variant='flush'>
@@ -20,7 +21,7 @@ const Footer = () => {
         <Col xs={6}>Footer</Col>
         <Col>Social Media</Col>
       </Row>      
-    </Container>
+    </Container> */}
     </>
     
   )
