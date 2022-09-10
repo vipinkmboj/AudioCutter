@@ -38,7 +38,7 @@ const FormAudioCutter = () => {
     //axios.post("http://localhost:5000/files/uploadaudiofile", formData, options).then(res => {
 
       
-    axios.post("/files/uploadaudiofile", formData, options).then(res => {
+    axios.post("http://localhost:5000/files/uploadaudiofile", formData, options).then(res => {
 
       console.log(res)
       setMessage(res.data);
