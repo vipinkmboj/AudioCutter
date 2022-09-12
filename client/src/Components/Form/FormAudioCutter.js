@@ -37,23 +37,37 @@ const FormAudioCutter = () => {
     //upload formData    
     //axios.post("http://localhost:5000/files/uploadaudiofile", formData, options).then(res => {
 
-      
-    axios.post("http://localhost:5000/files/uploadaudiofile", formData, options).then(res => {
+    if(formData.get('audioFile').size > 50000000) {
+      setMessage("File Size must be equal to or less than 50mb")     
 
-      console.log(res)
+    } else if(formData.get('audioFile').type != 'audio/mpeg') {
+      setMessage("Only mp3 files are allowed")
+
+    } else {
+      axios.post("http://localhost:5000/files/uploadaudiofile", formData, options).then(res => {
+
+      console.log(res);
       setMessage(res.data);
       setUploadPercentage(100);
+      setAudioFileName(formData.get('audioFile').name);
+      setAudioFileSize(formData.get('audioFile').size)
 
       setTimeout(() => {
         setMessage(null);
         setUploadPercentage(0);
-      }, 2000)     
+        setAudioFileName(null)
+        setAudioFileSize(null)
+      }, 4000)     
+      console.log(formData.get('audioFile').size) 
       /* console.log(formData.get('audioFile'))
       console.log(formData.get('audioFile').name)
       console.log(formData.get('audioFile').size) */
-      setAudioFileName(formData.get('audioFile').name);
-      setAudioFileSize(formData.get('audioFile').size)
+      //console.log(formData.get('audioFile').type)
+      
     })
+    }
+      
+    
 
     //clear file input
     
@@ -89,7 +103,7 @@ const FormAudioCutter = () => {
             </Form.Text>
           </Form.Group>
           <br/>      
-          { message }          
+          <strong>{ message }</strong>          
           <br/>
           {uploadPercentage > 0 && 
           <ProgressBar 
