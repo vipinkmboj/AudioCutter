@@ -40,7 +40,10 @@ const FormAudioCutter = () => {
     if(formData.get('audioFile').size > 50000000) {
       setMessage("File Size must be equal to or less than 50mb")     
 
-    } else if(formData.get('audioFile').type != 'audio/mpeg') {
+    }/*  else if (('audioFile').type == 'audio/mpeg' &&) {
+
+    } */
+     else if(formData.get('audioFile').type != 'audio/mpeg' ) {
       setMessage("Only mp3 files are allowed")
 
     } else {
@@ -133,6 +136,15 @@ const FormAudioCutter = () => {
             disabled={audioFile == '' ? true : false }
           >
             Upload Audio
+          </Button>
+          <Button 
+            //id='upload-button'
+            variant="danger" 
+            //className='m-3' 
+            //onClick={uploadAudioFile}
+            disabled={audioFile == '' ? true : false }
+          >
+            Stop Upload
           </Button>
           {/* <Button variant="primary" type="submit" className='m-3'>
             Split Audio
